@@ -1,0 +1,47 @@
+@import "variables.scss";
+
+.graph {
+    height: 95vh;
+    width: 95vw;
+    // background: rgb(166, 166, 233);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+
+        height: 100%;
+        width: 100%;
+        .bar {
+            background-color: red;
+            width: 100%;
+        }
+        p {
+            margin-top: 5px;
+            height: 1rem;
+            width: 1rem;
+            text-align: center;
+            writing-mode: vertical-rl;
+        }
+    }
+}
+
+@media (max-width: $desktop) {
+    .graph {
+        .wrapper {
+            p {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .graph {
+        width: 98vw;
+    }
+}
