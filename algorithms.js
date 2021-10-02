@@ -25,7 +25,7 @@ export const bubbleSort = async (array, renderBars) => {
     colorSortedArray(array, renderBars);
 };
 
-export const concurentQuickSort = async (array, start, end, renderBars) => {
+export const concurrentQuickSort = async (array, start, end, renderBars) => {
     if (start >= end) {
         return;
     }
@@ -34,8 +34,8 @@ export const concurentQuickSort = async (array, start, end, renderBars) => {
     array[index].note = "none";
 
     await Promise.all([
-        quickSort(array, start, index - 1, renderBars),
-        quickSort(array, index + 1, end, renderBars),
+        concurrentQuickSort(array, start, index - 1, renderBars),
+        concurrentQuickSort(array, index + 1, end, renderBars),
     ]);
 };
 export const quickSort = async (array, start, end, renderBars) => {
@@ -44,7 +44,6 @@ export const quickSort = async (array, start, end, renderBars) => {
     }
 
     let index = await partition(array, start, end, renderBars);
-    // array[index].note = "none";
     await quickSort(array, start, index - 1, renderBars);
     await quickSort(array, index + 1, end, renderBars);
 };
@@ -76,7 +75,9 @@ const partition = async (array, start, end, renderBars) => {
     await renderBars(array, 20);
 
     for (let i = start; i < end; i++) {
-        array[i].note = "none";
+        if (i != pivotIndex) {
+            array[i].note = "none";
+        }
     }
     array[pivotIndex].note = "none";
     return pivotIndex;
