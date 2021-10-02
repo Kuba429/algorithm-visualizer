@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
-import { bubbleSort } from "./algorithms";
+import { bubbleSort, getRandomArray } from "./algorithms";
 import "./styles/index.scss";
-const arraySize = 20;
+const arraySize = 100;
 let array = [];
 
 const createBarElement = (item) => {
@@ -26,13 +26,7 @@ const createBarElement = (item) => {
     arraySize <= 100 && barWrapper.appendChild(numberText);
     return barWrapper;
 };
-// const renderBars = (array) => {
-//     const graph = document.querySelector(".graph");
-//     graph.innerHTML = "";
-//     array.forEach((item) => {
-//         graph.appendChild(createBarElement(item));
-//     });
-// };
+
 const renderBars = (array, delay) => {
     const graph = document.querySelector(".graph");
     if (delay === undefined) {
@@ -52,21 +46,6 @@ const renderBars = (array, delay) => {
             }, delay);
         });
     }
-};
-
-const getRandomArray = (arraySize) => {
-    const min = arraySize / 10;
-    const max = arraySize - min;
-    const array = [];
-    for (let i = 0; i < arraySize; i++) {
-        array.push({
-            number: Math.floor(Math.random() * max) + min,
-            note: "none",
-            id: v4(),
-        });
-    }
-
-    return array;
 };
 
 const onStart = async () => {
