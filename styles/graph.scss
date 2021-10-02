@@ -31,15 +31,17 @@
 }
 //bar states
 .none {
-    background: $foreground;
+    background: $secondary;
 }
 .bubble-i {
     background: $green;
 }
-.bubble-j {
+.bubble-j,
+.to-sort {
     background: $red;
 }
-.done {
+.done,
+.pivot {
     background-color: $green;
 }
 

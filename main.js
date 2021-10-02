@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { bubbleSort, quickSort } from "./algorithms";
+import { bubbleSort, colorSortedArray, quickSort } from "./algorithms";
 import "./styles/index.scss";
 //non-scoped variables
 let arraySize = 100;
@@ -10,7 +10,7 @@ const createBarElement = (item) => {
     //bar wrapper
     const barWrapper = document.createElement("div");
     barWrapper.classList.add("wrapper");
-    barWrapper.style.width = `${(1 / arraySize) * (true ? 80 : 100)}%`;
+    barWrapper.style.width = `${(1 / arraySize) * (arraySize<150 ? 80 : 100)}%`;
 
     //bar
     const bar = document.createElement("div");
@@ -29,7 +29,7 @@ const createBarElement = (item) => {
     return barWrapper;
 };
 
-const renderBars = (array, delay) => {
+export const renderBars = (array, delay) => {
     const graph = document.querySelector(".graph");
     if (delay === undefined) {
         graph.innerHTML = "";
@@ -80,8 +80,9 @@ const onStart = () => {
     bubbleSortButton.addEventListener("click", () =>
         bubbleSort(array, renderBars)
     );
-    quickSortButton.addEventListener("click", () => {
-        renderBars(quickSort(array, renderBars));
+    quickSortButton.addEventListener("click", async () => {
+        await quickSort(array, 0, array.length - 1, renderBars);
+        await colorSortedArray(array, renderBars);
     });
     arraySizeSlider.addEventListener("input", (e) => {
         arraySize = e.target.value;
