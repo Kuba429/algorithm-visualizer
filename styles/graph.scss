@@ -3,6 +3,7 @@
 .graph {
     height: 95vh;
     width: 95vw;
+    margin-top: 1rem;
     // background: rgb(166, 166, 233);
     display: flex;
     align-items: flex-end;
@@ -17,7 +18,6 @@
         height: 100%;
         width: 100%;
         .bar {
-            background-color: red;
             width: 100%;
         }
         p {
@@ -28,6 +28,19 @@
             writing-mode: vertical-rl;
         }
     }
+}
+//bar types
+.none {
+    background: #000;
+}
+.bubble-i {
+    background: green;
+}
+.bubble-j {
+    background: red;
+}
+.done{
+    background: green;
 }
 
 @media (max-width: $desktop) {
