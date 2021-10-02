@@ -1,29 +1,19 @@
 import { v4 } from "uuid";
 
-export const getRandomArray = (arraySize) => {
-    const min = arraySize / 10;
-    const max = arraySize - min;
-    const array = [];
-    for (let i = 0; i < arraySize; i++) {
-        array.push({
-            number: Math.floor(Math.random() * max) + min,
-            note: "none",
-            id: v4(),
-        });
-    }
-
-    return array;
-};
-
 export const bubbleSort = async (array, renderBars) => {
-    const delay = 0.00000000001;
+    const delay = 1;
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array.length; j++) {
             array[i].note = "bubble-i";
             array[j].note = "bubble-j";
 
             await renderBars(array, delay);
-            if (array[i].number > array[j].number) {
+            if (array[i].number < array[j].number) {
+                //highlight match
+                array[i].note = "bubble-i";
+                array[j].note = "bubble-i";
+                await renderBars(array, delay);
+                //swap
                 let temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;

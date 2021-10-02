@@ -4,7 +4,7 @@
     height: 95vh;
     width: 95vw;
     margin-top: 1rem;
-    // background: rgb(166, 166, 233);
+    margin-bottom: 1rem;
     display: flex;
     align-items: flex-end;
     justify-content: space-evenly;
@@ -29,18 +29,18 @@
         }
     }
 }
-//bar types
+//bar states
 .none {
-    background: #000;
+    background: $foreground;
 }
 .bubble-i {
-    background: green;
+    background: $green;
 }
 .bubble-j {
-    background: red;
+    background: $red;
 }
 .done {
-    background-color: green;
+    background-color: $green;
 }
 
 @media (max-width: $desktop) {

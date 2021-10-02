@@ -1,8 +1,10 @@
 import { v4 } from "uuid";
-import { bubbleSort, getRandomArray } from "./algorithms";
+import { bubbleSort } from "./algorithms";
 import "./styles/index.scss";
-const arraySize = 100;
+//non-scoped variables
+let arraySize = 100;
 let array = [];
+let isSorting = false;
 
 const createBarElement = (item) => {
     //bar wrapper
@@ -47,15 +49,44 @@ const renderBars = (array, delay) => {
         });
     }
 };
-
-const onStart = async () => {
+const getRandomArray = (arraySize) => {
+    const min = Math.floor(arraySize / 10);
+    const max = arraySize - min;
+    const array = [];
+    for (let i = 0; i < arraySize; i++) {
+        array.push({
+            number: Math.floor(Math.random() * max) + min,
+            note: "none",
+            id: v4(),
+        });
+    }
+    return array;
+};
+const resetArray = () => {
     array = getRandomArray(arraySize);
-    await renderBars(array);
+    renderBars(array);
+};
+// export const scrollTop = ()=>{
+
+// }
+const onStart = () => {
+    //get elements
+    const newArrayButton = document.querySelector(".newArrayButton");
+    const bubbleSortButton = document.querySelector(".bubbleSortButton");
+    const quickSortButton = document.querySelector(".quickSortButton");
+    const arraySizeSlider = document.querySelector(".arraySizeSlider");
+    //event listeners
+    newArrayButton.addEventListener("click", resetArray);
+    bubbleSortButton.addEventListener("click", () =>
+        bubbleSort(array, renderBars)
+    );
+    arraySizeSlider.addEventListener("input", (e) => {
+        arraySize = e.target.value;
+        resetArray()
+    });
+    //last stage
+    arraySize = arraySizeSlider.value;
+    resetArray();
 };
 
 onStart();
-
-const testButton = document.querySelector(".test");
-testButton.addEventListener("click", () => {
-    renderBars(bubbleSort(array, renderBars));
-});

@@ -1,0 +1,42 @@
+@import './variables.scss';
+.control {
+    width: 100%;
+    background: $secondary;
+    padding: 1rem 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .buttons {
+        width: 60%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a {
+            text-decoration: none;
+            font-size: 1rem;
+            border: none;
+            background: none;
+            width: calc(100% / 3);
+            height: 100%;
+
+        }
+    }
+    .slider{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+
+@media (max-width: $medium){
+    .control{
+        .buttons{
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+    }
+}

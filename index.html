@@ -5,12 +5,29 @@
         <link rel="icon" type="image/svg+xml" href="favicon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script type="module" src="/main.js" defer></script>
-        <title>Vite App</title>
+        <title>Sorting Algorithm Visualizer</title>
     </head>
     <body>
-        <div class="App">
-            <div class="graph"></div>
-            <button class="test">Test</button>
+        <div id="app" class="App">
+            <div id="graph" class="graph"></div>
+            <div class="control">
+                <div class="buttons">
+                    <a class="newArrayButton">Get new array</a>
+                    <a href="#app" class="bubbleSortButton">Bubble Sort</a>
+                    <a href="#app" class="quickSortButton">Quick Sort</a>
+                </div>
+                <div class="slider">
+                    <span>Array Size</span>
+                    <input
+                        max="300"
+                        min="10"
+                        value="50"
+                        step="1"
+                        type="range"
+                        class="arraySizeSlider"
+                    />
+                </div>
+            </div>
         </div>
     </body>
 </html>
