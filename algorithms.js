@@ -28,6 +28,25 @@ export const bubbleSort = async (array, renderBars) => {
     colorSortedArray(array, renderBars);
 };
 
+export const quickSort = (array) => {
+    // const delay = 1;
+    if (array.length <= 1) {
+        return array;
+    }
+    const pivot = array.pop();
+    const greaterValues = [];
+    const lowerValues = [];
+    for (let item of array) {
+        if (item.number < pivot.number) {
+            lowerValues.push(item);
+        } else {
+            greaterValues.push(item);
+        }
+    }
+
+    return [...quickSort(lowerValues), pivot, ...quickSort(greaterValues)];
+};
+
 export const colorSortedArray = async (array, renderBars, delay) => {
     if (!delay) {
         delay = 5;

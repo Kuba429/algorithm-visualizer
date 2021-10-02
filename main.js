@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { bubbleSort } from "./algorithms";
+import { bubbleSort, quickSort } from "./algorithms";
 import "./styles/index.scss";
 //non-scoped variables
 let arraySize = 100;
@@ -80,10 +80,14 @@ const onStart = () => {
     bubbleSortButton.addEventListener("click", () =>
         bubbleSort(array, renderBars)
     );
+    quickSortButton.addEventListener("click", () => {
+        renderBars(quickSort(array, renderBars));
+    });
     arraySizeSlider.addEventListener("input", (e) => {
         arraySize = e.target.value;
-        resetArray()
+        resetArray();
     });
+
     //last stage
     arraySize = arraySizeSlider.value;
     resetArray();
