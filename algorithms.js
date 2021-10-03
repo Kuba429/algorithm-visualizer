@@ -102,7 +102,7 @@ export const insertionSort = async (array, renderBars) => {
 
 
         array[i].note='none'
-        // await renderBars(array, 50);
+
     }
     return array;
 };

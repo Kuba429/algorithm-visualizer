@@ -10,6 +10,7 @@ import "./styles/index.scss";
 let arraySize = 100;
 let array = [];
 let isSorting = false;
+let delay = 10;
 
 const createBarElement = (item) => {
     //bar wrapper
@@ -36,9 +37,9 @@ const createBarElement = (item) => {
     return barWrapper;
 };
 
-export const renderBars = (array, delay) => {
+export const renderBars = (array, delayBool) => {
     const graph = document.querySelector(".graph");
-    if (delay === undefined) {
+    if (delayBool === undefined && delayBool==false) {
         graph.innerHTML = "";
         array.forEach((item) => {
             graph.appendChild(createBarElement(item));
@@ -101,7 +102,7 @@ const onStart = () => {
     });
     insertionSortButton.addEventListener("click", async () => {
         await insertionSort(array, renderBars);
-        // renderBars(array);
+        await colorSortedArray(array, renderBars);
     });
 
     arraySizeSlider.addEventListener("input", (e) => {
