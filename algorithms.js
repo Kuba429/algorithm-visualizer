@@ -81,6 +81,32 @@ const partition = async (array, start, end, renderBars) => {
     return pivotIndex;
 };
 
+export const insertionSort = async (array, renderBars) => {
+    for (let i = 0; i < array.length; i++) {
+        array[i].note = "done";
+        await renderBars(array, 50);
+        
+        while (i > 0 && array[i].number < array[i - 1].number) {
+            
+
+            swap(array, i, i - 1);
+            array[i].note = "bubble-j";
+            array[i-1].note='done'
+            await renderBars(array, 50);
+            
+
+            i--;
+        }
+
+
+
+
+        array[i].note='none'
+        // await renderBars(array, 50);
+    }
+    return array;
+};
+
 export const colorSortedArray = async (array, renderBars, delay) => {
     array.forEach((item) => {
         item.note = "none";

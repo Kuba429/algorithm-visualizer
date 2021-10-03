@@ -2,6 +2,7 @@ import {
     bubbleSort,
     colorSortedArray,
     concurrentQuickSort,
+    insertionSort,
     quickSort,
 } from "./algorithms";
 import "./styles/index.scss";
@@ -83,6 +84,7 @@ const onStart = () => {
         ".concurrentQuickSortButton"
     );
     const arraySizeSlider = document.querySelector(".arraySizeSlider");
+    const insertionSortButton = document.querySelector(".insertionSortButton");
     //event listeners
     newArrayButton.addEventListener("click", resetArray);
     bubbleSortButton.addEventListener("click", () =>
@@ -96,6 +98,10 @@ const onStart = () => {
     concurrentQuickSortButton.addEventListener("click", async () => {
         await concurrentQuickSort(array, 0, array.length - 1, renderBars);
         await colorSortedArray(array, renderBars);
+    });
+    insertionSortButton.addEventListener("click", async () => {
+        await insertionSort(array, renderBars);
+        // renderBars(array);
     });
 
     arraySizeSlider.addEventListener("input", (e) => {
