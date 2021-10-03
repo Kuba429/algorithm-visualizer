@@ -1,4 +1,3 @@
-import { v4 } from "uuid";
 import {
     bubbleSort,
     colorSortedArray,
@@ -64,7 +63,6 @@ const getRandomArray = (arraySize) => {
         array.push({
             number: Math.floor(Math.random() * max) + min,
             note: "none",
-            id: v4(),
         });
     }
     return array;

@@ -1,5 +1,3 @@
-import { v4 } from "uuid";
-
 export const bubbleSort = async (array, renderBars) => {
     const delay = 1;
     for (let i = 0; i < array.length; i++) {
