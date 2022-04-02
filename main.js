@@ -39,7 +39,7 @@ const createBarElement = (item) => {
 
 export const renderBars = (array, delayBool) => {
     const graph = document.querySelector(".graph");
-    if (delayBool === undefined && delayBool==false) {
+    if (delayBool === undefined && delayBool == false) {
         graph.innerHTML = "";
         array.forEach((item) => {
             graph.appendChild(createBarElement(item));
@@ -58,14 +58,19 @@ export const renderBars = (array, delayBool) => {
     }
 };
 const getRandomArray = (arraySize) => {
-    const min = Math.floor(arraySize / 10);
-    const max = arraySize - min;
     const array = [];
     for (let i = 0; i < arraySize; i++) {
         array.push({
-            number: Math.floor(Math.random() * max) + min,
+            number: i,
             note: "none",
         });
+    }
+    //shuffle
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
     return array;
 };
