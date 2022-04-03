@@ -51,7 +51,7 @@ export const renderBars = (array, delayBool) => {
                     graph.appendChild(createBarElement(item));
                 });
                 resolve(array);
-            }, delayBool);
+            }, delay);
         });
     }
 };
@@ -59,7 +59,7 @@ const getRandomArray = (array, arraySize) => {
     array.length = 0;
     for (let i = 0; i < arraySize; i++) {
         array.push({
-            number: i,
+            number: i + 1,
             note: "none",
         });
     }
@@ -89,12 +89,13 @@ const onStart = () => {
         ".concurrentQuickSortButton"
     );
     const arraySizeSlider = document.querySelector(".arraySizeSlider");
+    const delaySlider = document.querySelector(".delaySlider");
     const insertionSortButton = document.querySelector(".insertionSortButton");
     //event listeners
     newArrayButton.addEventListener("click", resetArray);
-    bubbleSortButton.addEventListener("click", () =>
-        bubbleSort(array, renderBars)
-    );
+    bubbleSortButton.addEventListener("click", () => {
+        bubbleSort(array, renderBars);
+    });
     mergeSortButton.addEventListener("click", async () => {
         await mergeSort(array, 0, array.length - 1, renderBars);
         await colorSortedArray(array, renderBars);
@@ -117,7 +118,9 @@ const onStart = () => {
         arraySize = e.target.value;
         resetArray();
     });
-
+    delaySlider.addEventListener("input", (e) => {
+        delay = e.target.value * 2;
+    });
     //last stage
     arraySize = arraySizeSlider.value;
     resetArray();
