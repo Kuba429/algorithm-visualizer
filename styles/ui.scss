@@ -45,12 +45,15 @@
             -webkit-appearance: none;
             height: 15px;
             width: 15px;
-            border-radius:50%;
+            border-radius: 50%;
             background: $primary;
         }
     }
 }
-
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
 @media (max-width: $medium) {
     .control {
         .buttons {

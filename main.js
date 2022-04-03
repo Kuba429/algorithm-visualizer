@@ -91,12 +91,19 @@ const onStart = () => {
     const insertionSortButton = document.querySelector(".insertionSortButton");
     // functions controlling sorting state
     const startSorting = () => {
-        console.log("start");
         isSorting = true;
+        document.querySelectorAll("a").forEach((a) => {
+            a.classList.add("disabled");
+        });
+        document.querySelector(".slider").classList.add("disabled");
+        arraySizeSlider.disabled = true;
     };
     const stopSorting = () => {
-        console.log("stop");
         isSorting = false;
+        document.querySelectorAll(".disabled").forEach((item) => {
+            item.classList.remove("disabled");
+        });
+        arraySizeSlider.disabled = false;
     };
     const wrapperClosure = (sortingFunction) => {
         return async function () {
