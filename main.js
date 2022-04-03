@@ -3,6 +3,7 @@ import {
     colorSortedArray,
     concurrentQuickSort,
     insertionSort,
+    mergeSort,
     quickSort,
 } from "./algorithms";
 import "./styles/index.scss";
@@ -57,8 +58,8 @@ export const renderBars = (array, delayBool) => {
         });
     }
 };
-const getRandomArray = (arraySize) => {
-    const array = [];
+const getRandomArray = (array, arraySize) => {
+    array.length = 0;
     for (let i = 0; i < arraySize; i++) {
         array.push({
             number: i,
@@ -75,7 +76,7 @@ const getRandomArray = (arraySize) => {
     return array;
 };
 const resetArray = () => {
-    array = getRandomArray(arraySize);
+    getRandomArray(array, arraySize);
     renderBars(array);
 };
 // export const scrollTop = ()=>{
@@ -85,6 +86,7 @@ const onStart = () => {
     //get elements
     const newArrayButton = document.querySelector(".newArrayButton");
     const bubbleSortButton = document.querySelector(".bubbleSortButton");
+    const mergeSortButton = document.querySelector(".mergeSortButton");
     const quickSortButton = document.querySelector(".quickSortButton");
     const concurrentQuickSortButton = document.querySelector(
         ".concurrentQuickSortButton"
@@ -96,6 +98,10 @@ const onStart = () => {
     bubbleSortButton.addEventListener("click", () =>
         bubbleSort(array, renderBars)
     );
+    mergeSortButton.addEventListener("click", async () => {
+        await mergeSort(array, 0, array.length - 1, renderBars);
+        await colorSortedArray(array, renderBars);
+    });
     quickSortButton.addEventListener("click", async () => {
         await quickSort(array, 0, array.length - 1, renderBars);
         await colorSortedArray(array, renderBars);
