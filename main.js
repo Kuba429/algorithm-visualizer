@@ -1,12 +1,9 @@
-import {
-    bubbleSort,
-    colorSortedArray,
-    concurrentQuickSort,
-    insertionSort,
-    mergeSort,
-    quickSort,
-} from "./algorithms";
+import { mergeSort } from "./algorithms/mergeSort";
+import { bubbleSort } from "./algorithms/bubbleSort";
+import { insertionSort } from "./algorithms/insertionSort";
+import { quickSort, concurrentQuickSort } from "./algorithms/quickSort";
 import "./styles/index.scss";
+import { colorSortedArray } from "./helpers";
 //non-scoped variables
 let arraySize = 100;
 let array = [];
@@ -54,7 +51,7 @@ export const renderBars = (array, delayBool) => {
                     graph.appendChild(createBarElement(item));
                 });
                 resolve(array);
-            }, delay);
+            }, delayBool);
         });
     }
 };
