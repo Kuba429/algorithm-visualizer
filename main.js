@@ -76,9 +76,7 @@ const resetArray = () => {
     getRandomArray(array, arraySize);
     renderBars(array);
 };
-// export const scrollTop = ()=>{
 
-// }
 const onStart = () => {
     //get elements
     const newArrayButton = document.querySelector(".newArrayButton");
@@ -91,28 +89,57 @@ const onStart = () => {
     const arraySizeSlider = document.querySelector(".arraySizeSlider");
     const delaySlider = document.querySelector(".delaySlider");
     const insertionSortButton = document.querySelector(".insertionSortButton");
+    // functions controlling sorting state
+    const startSorting = () => {
+        console.log("start");
+        isSorting = true;
+    };
+    const stopSorting = () => {
+        console.log("stop");
+        isSorting = false;
+    };
+    const wrapperClosure = (sortingFunction) => {
+        return async function () {
+            if (isSorting) return;
+            startSorting();
+            await sortingFunction();
+            await colorSortedArray(array, renderBars);
+            stopSorting();
+        };
+    };
     //event listeners
     newArrayButton.addEventListener("click", resetArray);
-    bubbleSortButton.addEventListener("click", () => {
-        bubbleSort(array, renderBars);
-    });
-    mergeSortButton.addEventListener("click", async () => {
-        await mergeSort(array, 0, array.length - 1, renderBars);
-        await colorSortedArray(array, renderBars);
-    });
-    quickSortButton.addEventListener("click", async () => {
-        await quickSort(array, 0, array.length - 1, renderBars);
-        await colorSortedArray(array, renderBars);
-    });
+    bubbleSortButton.addEventListener(
+        "click",
+        wrapperClosure(async () => {
+            await bubbleSort(array, renderBars);
+        })
+    );
+    mergeSortButton.addEventListener(
+        "click",
+        wrapperClosure(async () => {
+            await mergeSort(array, 0, array.length - 1, renderBars);
+        })
+    );
+    quickSortButton.addEventListener(
+        "click",
+        wrapperClosure(async () => {
+            await quickSort(array, 0, array.length - 1, renderBars);
+        })
+    );
 
-    concurrentQuickSortButton.addEventListener("click", async () => {
-        await concurrentQuickSort(array, 0, array.length - 1, renderBars);
-        await colorSortedArray(array, renderBars);
-    });
-    insertionSortButton.addEventListener("click", async () => {
-        await insertionSort(array, renderBars);
-        await colorSortedArray(array, renderBars);
-    });
+    concurrentQuickSortButton.addEventListener(
+        "click",
+        wrapperClosure(async () => {
+            await concurrentQuickSort(array, 0, array.length - 1, renderBars);
+        })
+    );
+    insertionSortButton.addEventListener(
+        "click",
+        wrapperClosure(async () => {
+            await insertionSort(array, renderBars);
+        })
+    );
 
     arraySizeSlider.addEventListener("input", (e) => {
         arraySize = e.target.value;

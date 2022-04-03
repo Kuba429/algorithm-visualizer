@@ -20,7 +20,4 @@ export const bubbleSort = async (array, renderBars) => {
             array[j].note = "none";
         }
     }
-
-    //color sorted
-    colorSortedArray(array, renderBars);
 };
