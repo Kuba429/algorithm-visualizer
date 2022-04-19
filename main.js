@@ -39,17 +39,21 @@ export const renderBars = (array, delayBool) => {
     const graph = document.querySelector(".graph");
     if (delayBool === undefined && delayBool == false) {
         graph.innerHTML = "";
+        const fragment = document.createDocumentFragment();
         array.forEach((item) => {
-            graph.appendChild(createBarElement(item));
+            fragment.appendChild(createBarElement(item));
         });
+        graph.appendChild(fragment);
         return array;
     } else {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 graph.innerHTML = "";
+                const fragment = document.createDocumentFragment();
                 array.forEach((item) => {
-                    graph.appendChild(createBarElement(item));
+                    fragment.appendChild(createBarElement(item));
                 });
+                graph.appendChild(fragment);
                 resolve(array);
             }, delay);
         });
