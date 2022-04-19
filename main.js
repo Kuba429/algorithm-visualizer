@@ -8,7 +8,7 @@ import { colorSortedArray } from "./helpers";
 let arraySize = 100;
 let array = [];
 let isSorting = false;
-let delay = 10;
+let delay = 0;
 
 const createBarElement = (item) => {
     //bar wrapper
